@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playing M3U8 Live Links</title>
+    <title>Live by HACKHEIST</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
     <video id="video" controls autoplay style="width: 100%;">
-        <source src="YOUR_M3U8_LIVE_LINK_HERE" type="application/x-mpegURL">
+        <source src="https://bcovlive-a.akamaihd.net/90d518f659d145fabc2e89259900956d/ap-south-1/6415636611001/playlist.m3u8" type="application/x-mpegURL">
     </video>
 
-    <h1>AKK Sir LIVE CLASS 🔴</h1>
+    <h1>AKK Sir LIVE CLASS🔴</h1>
     <p>This is made by HACKHEIST only for my SUPPORTERS</p>
     <script>
         if(Hls.isSupported()) {
             var video = document.getElementById('video');
             var hls = new Hls();
-            hls.loadSource('YOUR_M3U8_LIVE_LINK_HERE');
+            hls.loadSource('https://bcovlive-a.akamaihd.net/90d518f659d145fabc2e89259900956d/ap-south-1/6415636611001/playlist.m3u8');
             hls.attachMedia(video);
         }
         else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'YOUR_M3U8_LIVE_LINK_HERE';
+            video.src = 'https://bcovlive-a.akamaihd.net/90d518f659d145fabc2e89259900956d/ap-south-1/6415636611001/playlist.m3u8';
         }
     </script>
 </body>
