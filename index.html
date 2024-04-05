@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Video Stream with Comments</title>
+    <style>
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #comment-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <h1>Live Video Stream</h1>
+        <video controls>
+            <source src="https://path/to/your/video.m3u8" type="application/x-mpegURL">
+            Your browser does not support the video tag or the file format of this video.
+        </video>
+        <div>
+            <h2>Comments</h2>
+            <div id="comment-list"></div>
+            <input type="text" id="comment-input" placeholder="Type your comment here">
+            <button onclick="addComment()">Post Comment</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a comment
+        function addComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value;
+
+            // Create a comment element
+            const commentElement = document.createElement('div');
+            commentElement.textContent = commentText;
+
+            // Append the comment to the list and save it in local storage
+            document.getElementById('comment-list').appendChild(commentElement);
+            saveComment(commentText);
+
+            // Clear the input field
+            commentInput.value = '';
+        }
+
+        // Function to save a comment in local storage
+        function saveComment(comment) {
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push(comment);
+            localStorage.setItem('comments', JSON.stringify(comments));
+        }
+
+        // Load comments from local storage on page load
+        window.onload = function() {
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            const commentList = document.getElementById('comment-list');
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.textContent = comment;
+                commentList.appendChild(commentElement);
+            });
+        };
+    </script>
+</body>
+</html>
