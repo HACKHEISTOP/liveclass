@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M3U8 Video Player with Pause Button</title>
+    <title>Playing M3U8 Live Links</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-    <h1>M3U8 Video Player</h1>
-
-    <video id="videoPlayer" controls>
-        <source src="https://path/to/your/video.m3u8" type="application/x-mpegURL">
-        Your browser does not support the video tag or the file format of this video.
+    <video id="video" controls autoplay style="width: 100%;">
+        <source src="YOUR_M3U8_LIVE_LINK_HERE" type="application/x-mpegURL">
     </video>
 
-    <button onclick="pauseVideo()">Pause</button>
-
     <script>
-        const video = document.getElementById('videoPlayer');
-
-        function pauseVideo() {
-            if (!video.paused) {
-                video.pause();
-            }
+        if(Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            hls.loadSource('YOUR_M3U8_LIVE_LINK_HERE');
+            hls.attachMedia(video);
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'YOUR_M3U8_LIVE_LINK_HERE';
         }
     </script>
 </body>
