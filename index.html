@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Video Stream with Comments</title>
     <style>
-        .video-container {
+        .container {
             max-width: 800px;
             margin: 0 auto;
         }
@@ -15,11 +15,8 @@
     </style>
 </head>
 <body>
-    <div class="video-container">
-       
-        <h1>AKK SIR LIVE CLASS 🔴</h1>
-         <p style="text-align: center; color: #00ff00;">This is a paragraph. You can add any text content here.</p>
-    <ul style="text-align: center; color: #ff00ff;">
+    <div class="container">
+        <h1>Live Video Stream</h1>
         <video controls>
             <source src="https://path/to/your/video.m3u8" type="application/x-mpegURL">
             Your browser does not support the video tag or the file format of this video.
@@ -33,31 +30,25 @@
     </div>
 
     <script>
-        // Function to add a comment
         function addComment() {
             const commentInput = document.getElementById('comment-input');
             const commentText = commentInput.value;
 
-            // Create a comment element
             const commentElement = document.createElement('div');
             commentElement.textContent = commentText;
 
-            // Append the comment to the list and save it in local storage
             document.getElementById('comment-list').appendChild(commentElement);
             saveComment(commentText);
 
-            // Clear the input field
             commentInput.value = '';
         }
 
-        // Function to save a comment in local storage
         function saveComment(comment) {
             let comments = JSON.parse(localStorage.getItem('comments')) || [];
             comments.push(comment);
             localStorage.setItem('comments', JSON.stringify(comments));
         }
 
-        // Load comments from local storage on page load
         window.onload = function() {
             let comments = JSON.parse(localStorage.getItem('comments')) || [];
             const commentList = document.getElementById('comment-list');
